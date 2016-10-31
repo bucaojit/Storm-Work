@@ -1,5 +1,9 @@
 package com.oliver.streaming.impl.bolts;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +13,11 @@ import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Tuple;
 
+import org.apache.log4j.Logger;
+
+
 public class SubmitBolt implements IRichBolt{
+   private static final Logger LOG = Logger.getLogger(SubmitBolt.class);
    Map<String, Integer> counters;
    private OutputCollector collector;
    
@@ -38,6 +46,7 @@ public class SubmitBolt implements IRichBolt{
    public void cleanup() {
       for(Map.Entry<String, Integer> entry:counters.entrySet()){
          System.out.println(entry.getKey()+" : " + entry.getValue());
+         LOG.info("TO PRINT: " + entry.getKey()+" : " + entry.getValue());
       }
    }
 
