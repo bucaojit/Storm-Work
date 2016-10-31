@@ -3,13 +3,14 @@ package com.oliver.streaming.impl.bolts;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.apache.storm.task.OutputCollector;
-import org.apache.storm.task.TopologyContext;
-import org.apache.storm.topology.OutputFieldsDeclarer;
-import org.apache.storm.topology.base.BaseRichBolt;
-import org.apache.storm.tuple.Fields;
-import org.apache.storm.tuple.Tuple;
-import org.apache.storm.tuple.Values;
+
+import backtype.storm.task.OutputCollector;
+import backtype.storm.task.TopologyContext;
+import backtype.storm.topology.OutputFieldsDeclarer;
+import backtype.storm.topology.base.BaseRichBolt;
+import backtype.storm.tuple.Fields;
+import backtype.storm.tuple.Tuple;
+import backtype.storm.tuple.Values;
 
 public class RouteBolt extends BaseRichBolt{
 	private static final Logger LOG = Logger.getLogger(RouteBolt.class);
@@ -22,6 +23,7 @@ public class RouteBolt extends BaseRichBolt{
 	@Override
 	public void execute(Tuple input) {
 		LOG.info("About to process tuple[" + input + "]");
+		
 	      String sentence = input.getString(0);
 	      String[] words = sentence.split(" ");
 	      
@@ -34,12 +36,12 @@ public class RouteBolt extends BaseRichBolt{
 	         }
 	         
 	      }
-
+	      
 	      outputCollector.ack(input);
         
 	}
 	@Override
-	public void prepare(Map arg0, TopologyContext arg1, OutputCollector arg2) {
+	public void prepare(Map arg0, TopologyContext arg1, OutputCollector outputCollector) {
         LOG.info("The PersistAllEvents Flag is set to: " + persistAllEvents);
         this.outputCollector = outputCollector;
 		

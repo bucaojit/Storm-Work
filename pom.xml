@@ -1,7 +1,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.oliver</groupId>
+    <groupId>com.hortonworks</groupId>
     <artifactId>storm-streaming</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -10,15 +10,15 @@
 
     <properties>
 
-        <storm.version>1.0.1.2.5.1.0-58</storm.version>
-        <storm.kafka.version>1.0.1.2.5.1.0-58</storm.kafka.version>
-        <storm.hdfs.version>1.0.1.2.5.1.0-58</storm.hdfs.version>
-        <kafka.version>0.10.0.2.5.1.0-58</kafka.version>
-        <hbase.version>1.1.2.2.5.1.0-58</hbase.version>
-        <hive.version>2.1.0.2.5.1.0-58</hive.version>
-        <hadoop.version>2.7.3.2.5.1.0-58</hadoop.version>
+        <storm.version>0.10.0.2.4.0.0-169</storm.version>
+        <storm.kafka.version>0.10.0.2.4.0.0-169</storm.kafka.version>
+        <storm.hdfs.version>0.10.0.2.4.0.0-169</storm.hdfs.version>
+        <kafka.version>0.9.0.2.4.0.0-169</kafka.version>
+        <hbase.version>1.1.2.2.4.0.0-169</hbase.version>
+        <hive.version>1.2.1000.2.4.0.0-169</hive.version>
+        <hadoop.version>2.7.1.2.4.0.0-169</hadoop.version>
         <spark.version>1.6.0</spark.version>
-        <phoenix.version>4.7.0.2.5.1.0-58</phoenix.version>
+        <phoenix.version>4.4.0.2.4.0.0-169</phoenix.version>
         <jpmml.version>1.0.22</jpmml.version>
         <active.mq.version>5.7.0</active.mq.version>
         <truck.topology.domain.version>1.0.0-SNAPSHOT</truck.topology.domain.version>
@@ -62,29 +62,22 @@
 
 
         <!-- Topology Domain Objects -->
+
         <!-- Kafka Dependencies -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.10</artifactId>
 			<version>${kafka.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.zookeeper</groupId>
-                    <artifactId>zookeeper</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
+                	<exclusions>
+               		<exclusion>
+                    	<groupId>org.slf4j</groupId>
+                    	<artifactId>log4j-over-slf4j</artifactId>
+                	</exclusion>
+                	<exclusion>
+                    	<groupId>org.slf4j</groupId>
+                    	<artifactId>slf4j-log4j12</artifactId>
+                	</exclusion>
+                	</exclusions>
 		</dependency>	
 		
         <!-- Storm Dependencies -->
@@ -113,6 +106,12 @@
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-kafka</artifactId>
             <version>${storm.kafka.version}</version>
+	    <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
        
 
@@ -140,107 +139,48 @@
             </exclusions>
         </dependency> -->
 
-        <!-- <dependency>
-             <groupId>org.apache.phoenix</groupId>
-             <artifactId>phoenix-core</artifactId>
-             <version>${phoenix.version}</version>
-             <exclusions>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>log4j-over-slf4j</artifactId>
-                 </exclusion>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>slf4j-log4j12</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>-->
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-core</artifactId>
+            <version>${phoenix.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-         <dependency>
-             <groupId>org.drools</groupId>
-             <artifactId>drools-core</artifactId>
-             <version>5.5.0.Final</version>
-             <scope>provided</scope>
-             <exclusions>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>log4j-over-slf4j</artifactId>
-                 </exclusion>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>slf4j-log4j12</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>
-         <dependency>
-             <groupId>org.drools</groupId>
-             <artifactId>drools-compiler</artifactId>
-             <version>5.5.0.Final</version>
-             <scope>provided</scope>
-             <exclusions>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>log4j-over-slf4j</artifactId>
-                 </exclusion>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>slf4j-log4j12</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-core</artifactId>
+            <version>5.5.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>5.5.0.Final</version>
+        </dependency>
 
 
-         <dependency>
-             <groupId>org.drools</groupId>
-             <artifactId>knowledge-api</artifactId>
-             <version>5.5.0.Final</version>
-             <scope>provided</scope>
-             <exclusions>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>log4j-over-slf4j</artifactId>
-                 </exclusion>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>slf4j-log4j12</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>knowledge-api</artifactId>
+            <version>5.5.0.Final</version>
+        </dependency>
 
 
-         <!-- Storm HDFS Dependencies -->
+        <!-- Storm HDFS Dependencies -->
         <dependency>
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-hdfs</artifactId>
             <version>${storm.hdfs.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
-        <!-- Storm Hbase Dependencies -->
-        <dependency>
-            <groupId>org.apache.storm</groupId>
-            <artifactId>storm-hbase</artifactId>
-            <version>${storm.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!-- Hadoop Dependencies -->
 
 
@@ -252,10 +192,6 @@
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -276,24 +212,25 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--
-               <dependency>
-                   <groupId>org.apache.hbase</groupId>
-                   <artifactId>hbase-protocol</artifactId>
-                   <version>${hbase.version}</version>
-                   <exclusions>
-                       <exclusion>
-                           <groupId>org.slf4j</groupId>
-                           <artifactId>log4j-over-slf4j</artifactId>
-                       </exclusion>
-                       <exclusion>
-                           <groupId>org.slf4j</groupId>
-                           <artifactId>slf4j-log4j12</artifactId>
-                       </exclusion>
-                   </exclusions>
-               </dependency> -->
+
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-protocol</artifactId>
+            <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
 
+        <!-- Hive dependencies -->
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-exec</artifactId>
@@ -310,86 +247,11 @@
             </exclusions>
         </dependency>
 
-       <dependency>
-      		<groupId>org.apache.hive.hcatalog</groupId>
-      		<artifactId>hive-hcatalog-streaming</artifactId>
-      		<version>${hive.version}</version>
-		    <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.calcite</groupId>
-                    <artifactId>calcite-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.calcite</groupId>
-                    <artifactId>calcite-avatica</artifactId>
-                </exclusion>
-      		</exclusions>
-    	</dependency>
-        
-
-        <dependency>
-		    <groupId>org.apache.hive.hcatalog</groupId>
-		    <artifactId>hive-hcatalog-core</artifactId>
-		    <version>${hive.version}</version>
-            <exclusions>
-            <exclusion>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.slf4j</groupId>
-                <artifactId>log4j-over-slf4j</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.apache.calcite</groupId>
-                <artifactId>calcite-avatica</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.apache.calcite</groupId>
-                <artifactId>calcite-core</artifactId>
-            </exclusion>
-            </exclusions>
-	</dependency>
-	
-
-	<dependency>
-		<groupId>org.apache.hive</groupId>
-		<artifactId>hive-cli</artifactId>
-		<version>${hive.version}</version>
-		<exclusions>
-            <exclusion>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.slf4j</groupId>
-                <artifactId>log4j-over-slf4j</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.apache.calcite</groupId>
-                <artifactId>calcite-core</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.apache.calcite</groupId>
-                <artifactId>calcite-avatica</artifactId>
-            </exclusion>
-		</exclusions>
-	</dependency>
-
         <!-- Spark MLlib -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-mllib_2.10</artifactId>
             <version>${spark.version}</version>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -407,34 +269,12 @@
             <groupId>org.jpmml</groupId>
             <artifactId>pmml-evaluator</artifactId>
             <version>${jpmml.version}</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
-	        <groupId>org.jpmml</groupId>
-	        <artifactId>pmml-model</artifactId>
-	        <version>${jpmml.version}</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
+	   <groupId>org.jpmml</groupId>
+	   <artifactId>pmml-model</artifactId>
+	   <version>${jpmml.version}</version>
         </dependency>
 
 
@@ -445,63 +285,28 @@
             <groupId>javax.mail</groupId>
             <artifactId>mailapi</artifactId>
             <version>${mail.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>${mail.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
             <version>${active.mq.version}</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- End of Other -->
