@@ -1,6 +1,9 @@
 # Storm-Work
 Bolts and Topologies for Storm processing
 
+Create topic
+./kafka-topics.sh --zookeeper localhost:2181 --create --partitions 1 --topic addresses --replication-factor 1
+
 Run with
 $ storm jar storm-streaming-1.0-SNAPSHOT.jar com.oliver.streaming.impl.topologies.KafkaPhoenixTopology /etc/storm_demo/config.properties
 
