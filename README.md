@@ -12,3 +12,6 @@ $ ./kafka-console-producer.sh --broker-list localhost:6667 --topic addresses
 
 Consumer sample:
 $ ./kafka-console-consumer.sh --zookeeper localhost:2181 --topic addresses
+
+Updated:
+$ storm jar storm-streaming-25-1.0-SNAPSHOT.jar com.oliver.streaming.impl.topologies.PhoenixTest /etc/storm/conf/config.yaml
